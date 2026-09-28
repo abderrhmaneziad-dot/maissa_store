@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main   # غيّرها إلى "master" إذا كان هذا اسم الفرع الرئيسي في مستودعك
+
+media_folder: "assets/uploads"      # مكان حفظ صور المنتجات المرفوعة
+public_folder: "/assets/uploads"    # المسار الذي تُعرض به الصور في الموقع
+
+collections:
+  - name: "products"
+    label: "المنتجات"
+    files:
+      - file: "data/products.json"
+        label: "قائمة المنتجات"
+        name: "products"
+        fields:
+          - label: "المنتجات"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.price}} دج"
+            fields:
+              - { label: "اسم المنتج", name: "name", widget: "string" }
+              - { label: "السعر (دج)", name: "price", widget: "number", value_type: "int" }
+              - { label: "صورة المنتج", name: "image", widget: "image", required: false }
