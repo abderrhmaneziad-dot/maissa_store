@@ -2,7 +2,8 @@
   "items": [
     {
       "name": "خمار الميساء",
-      "price": 1800
+      "price": 1800,
+      "image": "/assets/uploads/photo_2026-09-28_14-34-30.jpg"
     }
   ]
 }
