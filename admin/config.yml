@@ -1,7 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main   # غيّرها إلى "master" إذا كان هذا اسم الفرع الرئيسي في مستودعك
-
+  name: github
+  repo: abderrhmaneziad-dot/maissa_store
+  branch: main
 media_folder: "assets/uploads"      # مكان حفظ صور المنتجات المرفوعة
 public_folder: "/assets/uploads"    # المسار الذي تُعرض به الصور في الموقع
 
