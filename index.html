@@ -144,8 +144,10 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo">الميساء <span style="font-family:'Tajawal'; font-size:18px; color:var(--gold);">Collection</span>
-      <small>COLLECTION</small>
+    <div class="logo" id="logoWrap">
+      <img id="logoImg" alt="شعار الميساء Collection" style="display:none; height:42px; vertical-align:middle;">
+      <span id="logoText">الميساء <span style="font-family:'Tajawal'; font-size:18px; color:var(--gold);">Collection</span>
+      <small>COLLECTION</small></span>
     </div>
     <nav class="nav-links">
       <a id="whatsappOrdersLink" href="#" target="_blank">واتساب الطلبات</a>
@@ -198,6 +200,9 @@
   <div class="head">
     <div class="eyebrow">آراء حقيقية</div>
     <h2 class="rating">★ 4.9 متوسط تقييم زبوناتنا</h2>
+  </div>
+  <div id="reviewsImageWrap" style="text-align:center; margin-bottom:24px; display:none;">
+    <img id="reviewsImage" style="max-width:340px; width:100%; border-radius:16px; border:1px solid var(--border);" alt="آراء الزبونات">
   </div>
   <div class="t-grid">
     <div class="t-card">
@@ -291,7 +296,7 @@
   <h2>فروع محلات الميساء</h2>
   <div class="branch-grid">
     <div class="branch-card">
-      <div class="branch-photo"></div>
+      <div class="branch-photo" id="branch1Photo"></div>
       <div class="branch-body">
         <h3>فرع باش جراح</h3>
         <p>الطابق الأول، محل رقم 113، الجزائر العاصمة</p>
@@ -300,7 +305,7 @@
       </div>
     </div>
     <div class="branch-card">
-      <div class="branch-photo"></div>
+      <div class="branch-photo" id="branch2Photo"></div>
       <div class="branch-body">
         <h3>فرع براقي</h3>
         <p>بالقرب من بازار البركة، الجزائر العاصمة</p>
@@ -476,8 +481,40 @@ document.getElementById('confirmOrder').addEventListener('click', function(){
   window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + msg, '_blank');
 });
 
+async function loadSiteSettings(){
+  try{
+    const res = await fetch('/data/settings.json');
+    const s = await res.json();
+
+    if(s.logo){
+      document.getElementById('logoImg').src = s.logo;
+      document.getElementById('logoImg').style.display = 'inline-block';
+      document.getElementById('logoText').style.display = 'none';
+    }
+    if(s.branch1Image){
+      const el = document.getElementById('branch1Photo');
+      el.style.backgroundImage = 'url(' + s.branch1Image + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+    if(s.branch2Image){
+      const el = document.getElementById('branch2Photo');
+      el.style.backgroundImage = 'url(' + s.branch2Image + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+    if(s.reviewsImage){
+      document.getElementById('reviewsImage').src = s.reviewsImage;
+      document.getElementById('reviewsImageWrap').style.display = 'block';
+    }
+  }catch(e){
+    // لا شيء مرفوع بعد، تبقى العناصر الافتراضية كما هي
+  }
+}
+
 loadProducts();
 loadWilayas();
+loadSiteSettings();
 </script>
 
 </body>
