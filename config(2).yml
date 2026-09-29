@@ -1,0 +1,65 @@
+backend:
+  name: github
+  repo: abderrhmaneziad-dot/maissa_store
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "products"
+    label: "المنتجات"
+    files:
+      - file: "data/products.json"
+        label: "قائمة المنتجات"
+        name: "products"
+        fields:
+          - label: "المنتجات"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.price}} دج"
+            fields:
+              - { label: "اسم المنتج", name: "name", widget: "string" }
+              - { label: "السعر (دج، أرقام فقط)", name: "price", widget: "number", value_type: "int" }
+              - label: "التصنيف"
+                name: "category"
+                widget: "select"
+                options: ["حجابات", "أونسمبل", "خمارات"]
+              - label: "الألوان المتاحة"
+                name: "colors"
+                widget: "string"
+                required: false
+                hint: "افصلي بين الألوان بفاصلة، مثال: أسود، كحلي، بيج"
+              - label: "نفذت الكمية؟"
+                name: "soldOut"
+                widget: "boolean"
+                default: false
+              - { label: "صورة المنتج", name: "image", widget: "image", required: false }
+
+  - name: "site_settings"
+    label: "صور ثابتة (الشعار والفروع والآراء)"
+    files:
+      - file: "data/settings.json"
+        label: "إعدادات الصور الثابتة"
+        name: "settings"
+        fields:
+          - { label: "شعار المتجر (اللوغو)", name: "logo", widget: "image", required: false }
+          - { label: "صورة فرع باش جراح", name: "branch1Image", widget: "image", required: false }
+          - { label: "صورة فرع براقي", name: "branch2Image", widget: "image", required: false }
+          - { label: "صورة آراء الزبونات (screenshot)", name: "reviewsImage", widget: "image", required: false }
+
+  - name: "shipping"
+    label: "أسعار التوصيل"
+    files:
+      - file: "data/wilayas.json"
+        label: "التوصيل حسب الولاية"
+        name: "wilayas"
+        fields:
+          - label: "الولايات"
+            name: "wilayas"
+            widget: "list"
+            summary: "{{fields.name}} — منزل: {{fields.home}} / مكتب: {{fields.desk}}"
+            fields:
+              - { label: "اسم الولاية", name: "name", widget: "string" }
+              - { label: "سعر التوصيل للمنزل (دج)", name: "home", widget: "number", value_type: "int" }
+              - { label: "سعر التوصيل للمكتب (دج)", name: "desk", widget: "number", value_type: "int" }

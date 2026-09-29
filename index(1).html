@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>الميساء Collection | من هنا تبدأ الأناقة مع الستر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fdf6f4;
+    --card:#ffffff;
+    --ink:#2b1720;
+    --ink-soft:#7a6069;
+    --maroon:#7c1f3a;
+    --maroon-dark:#5e1730;
+    --gold:#a9782f;
+    --pink:#f6d9e4;
+    --border:#f0dde3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Tajawal', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  h1,h2,.display{ font-family:'Rakkas', serif; font-weight:400; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 20px; }
+  .eyebrow{ color:var(--gold); font-size:14px; font-weight:700; margin-bottom:8px; }
+
+  header{ border-bottom:1px solid var(--border); background:var(--bg); }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding:18px 20px; max-width:1100px; margin:0 auto; }
+  .logo{ font-size:24px; color:var(--maroon); }
+  .logo small{ display:block; font-family:'Tajawal'; font-size:11px; letter-spacing:3px; color:var(--gold); font-weight:700; }
+  .nav-links{ display:flex; align-items:center; gap:18px; font-size:14px; }
+  .nav-links a{ color:var(--ink-soft); }
+
+  .btn{ display:inline-block; padding:13px 28px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:1.5px solid var(--maroon); }
+  .btn-solid{ background:var(--maroon); color:#fff; }
+  .btn-solid:hover{ background:var(--maroon-dark); }
+  .btn-outline{ background:transparent; color:var(--maroon); }
+  .btn-outline:hover{ background:var(--pink); }
+  .btn-link{ color:var(--maroon); font-weight:700; text-decoration:underline; }
+
+  .hero{ padding:56px 0 40px; text-align:center; }
+  .hero h1{ font-size:42px; color:var(--maroon); line-height:1.5; margin:0 0 20px; }
+  .hero p{ max-width:520px; margin:0 auto 28px; color:var(--ink-soft); font-size:16px; }
+  .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .hero-visual{ margin:44px auto 0; max-width:640px; height:220px; border-radius:24px;
+    background:linear-gradient(135deg, var(--pink), #fbe8d8 60%, var(--pink));
+    display:flex; align-items:center; justify-content:center; color:var(--maroon); font-family:'Rakkas'; font-size:30px; }
+
+  .features{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; padding:40px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); text-align:center; }
+  .features .item strong{ display:block; font-size:16px; margin-bottom:4px; }
+  .features .item span{ color:var(--ink-soft); font-size:14px; }
+
+  .story{ text-align:center; padding:56px 0; }
+  .story-box{ background:var(--card); border:1px solid var(--border); border-radius:20px; padding:40px 28px; max-width:640px; margin:0 auto; }
+  .story-box h2{ color:var(--maroon); font-size:30px; margin:0 0 6px; }
+  .story-box .tagline{ color:var(--gold); font-weight:700; margin-bottom:16px; }
+  .story-box p{ color:var(--ink-soft); }
+
+  .catalog{ padding:40px 0 60px; text-align:center; }
+  .catalog h2{ color:var(--maroon); font-size:34px; margin:6px 0 26px; }
+  .filters{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+  .filter-pill{ padding:10px 22px; border-radius:999px; border:1.5px solid var(--border); background:#fff; font-weight:700; font-size:14px; cursor:pointer; color:var(--ink-soft); }
+  .filter-pill.active{ border-color:var(--maroon); color:var(--maroon); background:var(--pink); }
+  .products-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:22px; text-align:right; }
+  .product-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; position:relative; }
+  .product-card img{ width:100%; height:230px; object-fit:cover; display:block; background:var(--pink); }
+  .product-card .no-img{ width:100%; height:230px; display:flex; align-items:center; justify-content:center; background:var(--pink); color:var(--maroon); font-family:'Rakkas'; font-size:18px; }
+  .product-card .body{ padding:16px; }
+  .product-card .cat{ color:var(--gold); font-size:12px; font-weight:700; margin-bottom:6px; }
+  .product-card h3{ font-family:'Tajawal'; font-weight:800; font-size:17px; margin:0 0 6px; }
+  .product-card .price{ color:var(--maroon); font-weight:800; font-size:16px; margin-bottom:10px; }
+  .product-card .order-link{ font-size:13px; color:var(--ink-soft); text-decoration:underline; cursor:pointer; background:none; border:none; padding:0; font-family:'Tajawal'; }
+  .sold-badge{ position:absolute; top:12px; right:12px; background:var(--ink); color:#fff; font-size:12px; padding:4px 10px; border-radius:999px; }
+  .empty-msg{ grid-column:1/-1; padding:40px; color:var(--ink-soft); }
+
+  .testimonials{ padding:50px 0; }
+  .testimonials .head{ text-align:center; margin-bottom:28px; }
+  .testimonials h2{ color:var(--maroon); font-size:30px; margin:6px 0; }
+  .rating{ color:var(--gold); font-weight:700; }
+  .t-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+  .t-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; }
+  .t-card p{ margin:0 0 12px; }
+  .t-card .who{ color:var(--gold); font-weight:700; font-size:14px; }
+
+  .social{ padding:20px 0 50px; }
+  .social-box{ background:var(--ink); color:#fff; border-radius:20px; padding:32px 24px; text-align:center; max-width:420px; margin:0 auto; }
+  .social-box .stats{ display:flex; justify-content:center; gap:28px; margin:16px 0; }
+  .social-box .stats div strong{ display:block; font-size:20px; }
+  .social-box .stats div span{ font-size:12px; opacity:.7; }
+  .social-box a.handle{ display:inline-block; margin-top:10px; color:#f6c6d9; font-weight:700; }
+
+  .order{ padding:50px 0; background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .order .wrap{ max-width:520px; }
+  .order h2{ text-align:center; color:var(--maroon); font-size:30px; margin:6px 0 24px; }
+  .selected-product{ background:var(--pink); border-radius:14px; padding:14px 16px; margin-bottom:20px; font-weight:700; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:14px; font-weight:700; margin-bottom:6px; }
+  .field input, .field select, .field textarea{ width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; font-family:'Tajawal'; font-size:15px; background:#fff; }
+  .field textarea{ resize:vertical; min-height:70px; }
+  .qty-row{ display:flex; align-items:center; gap:14px; }
+  .qty-row button{ width:38px; height:38px; border-radius:50%; border:1.5px solid var(--maroon); background:#fff; color:var(--maroon); font-size:18px; cursor:pointer; }
+  .delivery-type{ display:flex; gap:12px; }
+  .delivery-type label{ flex:1; border:1.5px solid var(--border); border-radius:10px; padding:10px; text-align:center; font-weight:700; font-size:14px; cursor:pointer; }
+  .delivery-type input{ display:none; }
+  .delivery-type input:checked + span{ color:var(--maroon); }
+  .total-row{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; font-weight:800; font-size:18px; border-top:1px dashed var(--border); margin-top:6px; }
+  .total-row .amount{ color:var(--maroon); }
+  .submit-btn{ width:100%; padding:16px; border:none; border-radius:999px; background:var(--maroon); color:#fff; font-weight:800; font-size:16px; cursor:pointer; }
+  .submit-btn:hover{ background:var(--maroon-dark); }
+  .form-note{ text-align:center; font-size:13px; color:var(--ink-soft); margin-top:10px; }
+
+  .branches{ padding:50px 0; text-align:center; }
+  .branches h2{ color:var(--maroon); font-size:32px; margin:6px 0 26px; }
+  .branch-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; text-align:right; }
+  .branch-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+  .branch-photo{ height:170px; background:linear-gradient(135deg,var(--pink),#e9d3c0); }
+  .branch-body{ padding:18px; }
+  .branch-body h3{ margin:0 0 8px; font-size:17px; }
+  .branch-body p{ margin:4px 0; color:var(--ink-soft); font-size:14px; }
+  .map-link{ display:inline-block; margin-top:10px; font-size:13px; font-weight:700; color:var(--maroon); border:1.5px solid var(--maroon); border-radius:999px; padding:8px 16px; }
+
+  footer{ background:var(--maroon-dark); color:#f3dfe6; padding:44px 0 24px; }
+  .footer-grid{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:24px; margin-bottom:30px; }
+  footer h4{ color:#fff; font-size:15px; margin:0 0 12px; }
+  footer p, footer a{ color:#e6c3d0; font-size:14px; }
+  footer .brand{ font-family:'Rakkas'; font-size:22px; color:#fff; margin-bottom:10px; }
+  footer ul{ list-style:none; padding:0; margin:0; display:grid; gap:8px; }
+  .footer-bottom{ border-top:1px solid rgba(255,255,255,.15); padding-top:18px; text-align:center; font-size:12px; color:#cfa3b3; }
+
+  @media (max-width:640px){
+    .hero h1{ font-size:32px; }
+    .footer-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo" id="logoWrap">
+      <img id="logoImg" alt="شعار الميساء Collection" style="display:none; height:42px; vertical-align:middle;">
+      <span id="logoText">الميساء <span style="font-family:'Tajawal'; font-size:18px; color:var(--gold);">Collection</span>
+      <small>COLLECTION</small></span>
+    </div>
+    <nav class="nav-links">
+      <a id="whatsappOrdersLink" href="#" target="_blank">واتساب الطلبات</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="eyebrow">✦ إصدار حصري أول</div>
+  <h1>من هنا تبدأ الأناقة<br>مع الستر</h1>
+  <p>نقدّم لك مجموعة الحجابات الجديدة المصممة بعناية فائقة لتجمع بين رقي الحضور وجمال التفاصيل الفاخرة. خامات مريحة ومقاومة للتجعد تدوم طويلاً.</p>
+  <p style="font-weight:700; color:var(--maroon);">توصيل سريع لكافة الولايات والدفع عند الاستلام</p>
+  <div class="hero-ctas">
+    <a class="btn btn-outline" id="heroWhatsapp" href="#" target="_blank">طلب مباشر عبر واتساب</a>
+    <a class="btn-link" href="#catalog">اطلبي الآن عبر استمارة الطلب</a>
+  </div>
+  <div class="hero-visual">الميساء Collection</div>
+</section>
+
+<section class="features wrap">
+  <div class="item"><strong>أقمشة فاخرة</strong><span>مستوردة ومنتقاة بعناية</span></div>
+  <div class="item"><strong>تصاميم محتشمة</strong><span>مريحة طوال اليوم</span></div>
+  <div class="item"><strong>توصيل سريع</strong><span>لكافة الولايات</span></div>
+  <div class="item"><strong>الدفع عند الاستلام</strong><span>بكل أمان وثقة</span></div>
+</section>
+
+<section class="story wrap">
+  <div class="story-box">
+    <h2>دار الميساء</h2>
+    <div class="tagline">"من هنا تبدأ الأناقة مع الستر"</div>
+    <p>نحن في الميساء كولكشن نؤمن أن الأناقة والستر قيمتان لا تنفصلان. كل قطعة في مجموعتنا تخضع لاختيار دقيق ومطابقة صارمة لصور العرض الحقيقية، لنوفر لك تجربة تسوق راقية بكل ثقة ومصداقية.</p>
+  </div>
+</section>
+
+<section class="catalog wrap" id="catalog">
+  <div class="eyebrow">المعروض الأول</div>
+  <h2>مجموعة الحجابات الجديدة</h2>
+  <div class="filters" id="filters">
+    <button class="filter-pill active" data-cat="الكل">الكل</button>
+    <button class="filter-pill" data-cat="حجابات">حجابات</button>
+    <button class="filter-pill" data-cat="أونسمبل">أونسمبل</button>
+    <button class="filter-pill" data-cat="خمارات">خمارات</button>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <p class="empty-msg">جاري تحميل المنتجات...</p>
+  </div>
+</section>
+
+<section class="testimonials wrap">
+  <div class="head">
+    <div class="eyebrow">آراء حقيقية</div>
+    <h2 class="rating">★ 4.9 متوسط تقييم زبوناتنا</h2>
+  </div>
+  <div id="reviewsImageWrap" style="text-align:center; margin-bottom:24px; display:none;">
+    <img id="reviewsImage" style="max-width:340px; width:100%; border-radius:16px; border:1px solid var(--border);" alt="آراء الزبونات">
+  </div>
+  <div class="t-grid">
+    <div class="t-card">
+      <p>"راني فرحانة بزاف، أول مرة نلقى الستايل ديالي بالتفصيل هذا.. ولحقني كيما في الصورة تماماً."</p>
+      <div class="who">أمينة — الجزائر العاصمة</div>
+    </div>
+    <div class="t-card">
+      <p>"جبت نقولك يعطيك الصحة، فينيسيو وقماش قمة.. جاوني الحجابات هايلين ومستورين بزاف، ربي يوفقك ويزيدك من فضله."</p>
+      <div class="who">نادية — البليدة</div>
+    </div>
+  </div>
+</section>
+
+<section class="social wrap">
+  <div class="social-box">
+    <div style="font-weight:800; font-size:18px;">مجتمع يُبنى على ثقة الزبونات</div>
+    <p style="font-size:13px; opacity:.85;">أكثر من 204 ألف متابعة على إنستغرام تثق بجودة وصدق منتجاتنا.</p>
+    <div class="stats">
+      <div><strong>204K</strong><span>متابعة</span></div>
+      <div><strong>694</strong><span>منشور</span></div>
+      <div><strong>4.9★</strong><span>تقييم</span></div>
+    </div>
+    <a class="handle" href="https://instagram.com/el_maissa_collection" target="_blank">el_maissa_collection@</a>
+  </div>
+</section>
+
+<section class="order" id="order-form">
+  <div class="wrap">
+    <h2>طلب مباشر وسريع</h2>
+    <div class="selected-product" id="selectedProduct">اختاري منتجاً من فوق ليظهر هنا</div>
+
+    <div class="field" id="colorField" style="display:none;">
+      <label>اختاري اللون</label>
+      <select id="colorSelect"></select>
+    </div>
+
+    <div class="field">
+      <label>الكمية (الحد الأقصى 3 قطع)</label>
+      <div class="qty-row">
+        <button type="button" id="qtyMinus">−</button>
+        <span id="qtyValue" style="font-weight:800; font-size:16px;">1</span>
+        <button type="button" id="qtyPlus">+</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>الاسم الكامل</label>
+      <input type="text" id="custName" placeholder="مثال: أمينة بن علي">
+    </div>
+
+    <div class="field">
+      <label>رقم الهاتف</label>
+      <input type="tel" id="custPhone" placeholder="0551 xx xx xx">
+    </div>
+
+    <div class="field">
+      <label>الولاية</label>
+      <select id="wilayaSelect"><option>جاري التحميل...</option></select>
+    </div>
+
+    <div class="field">
+      <label>نوع التوصيل</label>
+      <div class="delivery-type">
+        <label><input type="radio" name="deliveryType" value="home" checked><span>للمنزل</span></label>
+        <label><input type="radio" name="deliveryType" value="desk"><span>للمكتب</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>البلدية</label>
+      <select id="communeSelect"><option>اختاري الولاية أولاً</option></select>
+    </div>
+
+    <div class="total-row">
+      <span>المجموع الكلي مع التوصيل</span>
+      <span class="amount" id="totalAmount">0 دج</span>
+    </div>
+
+    <button class="submit-btn" id="confirmOrder">تأكيد طلب الحجز عبر واتساب</button>
+    <p class="form-note">سيتم فتح واتساب لتأكيد طلبك مباشرة مع المتجر.</p>
+  </div>
+</section>
+
+<section class="branches wrap">
+  <div class="eyebrow">زورونا في المتجر</div>
+  <h2>فروع محلات الميساء</h2>
+  <div class="branch-grid">
+    <div class="branch-card">
+      <div class="branch-photo" id="branch1Photo"></div>
+      <div class="branch-body">
+        <h3>فرع باش جراح</h3>
+        <p>الطابق الأول، محل رقم 113، الجزائر العاصمة</p>
+        <p>السبت–الخميس 9:00 - 18:00 (الجمعة مغلق)</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=%D8%A8%D8%A7%D8%B4%20%D8%AC%D8%B1%D8%A7%D8%AD%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%85%D8%A9">عرض الموقع على الخريطة</a>
+      </div>
+    </div>
+    <div class="branch-card">
+      <div class="branch-photo" id="branch2Photo"></div>
+      <div class="branch-body">
+        <h3>فرع براقي</h3>
+        <p>بالقرب من بازار البركة، الجزائر العاصمة</p>
+        <p>السبت–الخميس 9:00 - 18:00 (الجمعة مغلق)</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A8%D8%B1%D9%83%D8%A9%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%85%D8%A9">عرض الموقع على الخريطة</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand">الميساء Collection</div>
+      <p>العلامة الرائدة في ملابس المحجبات والموضة المحتشمة الأنيقة في الجزائر. هدفنا الدائم تقديم تصاميم مريحة بأعلى معايير الإتقان.</p>
+    </div>
+    <div>
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#catalog">مجموعة الحجابات</a></li>
+        <li><a href="#order-form">استمارة الطلب</a></li>
+        <li><a href="#">آراء الزبونات</a></li>
+        <li><a href="#">فروعنا الرسمية</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>تواصل مباشر</h4>
+      <ul>
+        <li>واتساب: 0551 92 05 26</li>
+        <li>هاتف المحلات: 0551009513</li>
+        <li><a href="https://instagram.com/el_maissa_collection" target="_blank">إنستغرام</a></li>
+        <li><a href="https://facebook.com" target="_blank">فيسبوك</a></li>
+        <li><a href="https://tiktok.com" target="_blank">تيك توك</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 الميساء كولكشن. جميع الحقوق محفوظة. شحن آمن وموثوق عبر Noest-DZ
+  </div>
+</footer>
+
+<script>
+const WHATSAPP_NUMBER = "213551920526";
+
+document.getElementById('whatsappOrdersLink').href = 'https://wa.me/' + WHATSAPP_NUMBER;
+document.getElementById('heroWhatsapp').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('السلام عليكم، أريد الاستفسار عن منتجاتكم');
+
+let allProducts = [];
+let wilayas = [];
+let communesData = [];
+let selected = { name:'', price:0, colors:[] };
+let qty = 1;
+
+async function loadProducts(){
+  const grid = document.getElementById('productsGrid');
+  try{
+    const res = await fetch('/data/products.json');
+    const data = await res.json();
+    allProducts = data.items || [];
+    renderProducts('الكل');
+  }catch(e){
+    grid.innerHTML = '<p class="empty-msg">تعذر تحميل المنتجات حالياً</p>';
+  }
+}
+
+function renderProducts(cat){
+  const grid = document.getElementById('productsGrid');
+  const list = cat === 'الكل' ? allProducts : allProducts.filter(function(p){ return p.category === cat; });
+  if(list.length === 0){
+    grid.innerHTML = '<p class="empty-msg">لا توجد منتجات في هذا التصنيف حالياً</p>';
+    return;
+  }
+  grid.innerHTML = list.map(function(p, i){
+    const imgHtml = p.image ? '<img src="' + p.image + '" alt="' + p.name + '">' : '<div class="no-img">' + p.name + '</div>';
+    const badge = p.soldOut ? '<div class="sold-badge">نفذت الكمية</div>' : '';
+    const orderBtn = p.soldOut ? '' : '<button class="order-link" data-index="' + i + '" data-cat="' + (cat==='الكل' ? '' : cat) + '">اختاري اللون واطلبي</button>';
+    return '<div class="product-card">' + badge + imgHtml +
+      '<div class="body"><div class="cat">' + (p.category || '') + '</div>' +
+      '<h3>' + p.name + '</h3>' +
+      '<div class="price">' + p.price + ' دج</div>' +
+      orderBtn + '</div></div>';
+  }).join('');
+
+  grid.querySelectorAll('.order-link').forEach(function(btn, idx){
+    btn.addEventListener('click', function(){ selectProduct(list[idx]); });
+  });
+}
+
+document.getElementById('filters').addEventListener('click', function(e){
+  if(e.target.classList.contains('filter-pill')){
+    document.querySelectorAll('.filter-pill').forEach(function(b){ b.classList.remove('active'); });
+    e.target.classList.add('active');
+    renderProducts(e.target.dataset.cat);
+  }
+});
+
+function selectProduct(p){
+  selected = { name: p.name, price: p.price, colors: (p.colors || '').split('،').map(function(c){return c.trim();}).filter(Boolean) };
+  qty = 1;
+  document.getElementById('qtyValue').textContent = qty;
+  document.getElementById('selectedProduct').textContent = p.name + ' — ' + p.price + ' دج';
+  const colorField = document.getElementById('colorField');
+  const colorSelect = document.getElementById('colorSelect');
+  if(selected.colors.length){
+    colorField.style.display = 'block';
+    colorSelect.innerHTML = selected.colors.map(function(c){ return '<option>' + c + '</option>'; }).join('');
+  } else {
+    colorField.style.display = 'none';
+  }
+  updateTotal();
+  document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
+}
+
+async function loadWilayas(){
+  const sel = document.getElementById('wilayaSelect');
+  try{
+    const res = await fetch('/data/wilayas.json');
+    const data = await res.json();
+    wilayas = data.wilayas || [];
+    sel.innerHTML = wilayas.map(function(w){ return '<option value="' + w.name + '">' + w.name + '</option>'; }).join('');
+    updateTotal();
+    populateCommunes(sel.value);
+  }catch(e){
+    sel.innerHTML = '<option>تعذر تحميل قائمة الولايات</option>';
+  }
+}
+
+async function loadCommunes(){
+  try{
+    const res = await fetch('/data/communes.json');
+    const data = await res.json();
+    communesData = data.wilayas || [];
+    populateCommunes(document.getElementById('wilayaSelect').value);
+  }catch(e){
+    // تبقى القائمة كما هي إن تعذر التحميل
+  }
+}
+
+function populateCommunes(wilayaName){
+  const communeSel = document.getElementById('communeSelect');
+  const entry = communesData.find(function(w){ return w.name === wilayaName; });
+  if(entry && entry.communes && entry.communes.length){
+    communeSel.innerHTML = entry.communes.map(function(c){ return '<option>' + c + '</option>'; }).join('');
+  } else {
+    communeSel.innerHTML = '<option>اكتبي بلديتك عند التأكيد عبر واتساب</option>';
+  }
+}
+
+function currentDeliveryPrice(){
+  const wName = document.getElementById('wilayaSelect').value;
+  const type = document.querySelector('input[name="deliveryType"]:checked').value;
+  const w = wilayas.find(function(w){ return w.name === wName; });
+  if(!w) return 0;
+  return type === 'home' ? (w.home || 0) : (w.desk || 0);
+}
+
+function updateTotal(){
+  const total = selected.price * qty + currentDeliveryPrice();
+  document.getElementById('totalAmount').textContent = total + ' دج';
+}
+
+document.getElementById('qtyMinus').addEventListener('click', function(){ if(qty>1){ qty--; document.getElementById('qtyValue').textContent = qty; updateTotal(); }});
+document.getElementById('qtyPlus').addEventListener('click', function(){ if(qty<3){ qty++; document.getElementById('qtyValue').textContent = qty; updateTotal(); }});
+document.getElementById('wilayaSelect').addEventListener('change', function(){ updateTotal(); populateCommunes(this.value); });
+document.querySelectorAll('input[name="deliveryType"]').forEach(function(r){ r.addEventListener('change', updateTotal); });
+
+document.getElementById('confirmOrder').addEventListener('click', function(){
+  if(!selected.name){ alert('من فضلك اختاري منتجاً أولاً من الأعلى'); return; }
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const wilaya = document.getElementById('wilayaSelect').value;
+  const commune = document.getElementById('communeSelect').value;
+  const deliveryType = document.querySelector('input[name="deliveryType"]:checked').value === 'home' ? 'للمنزل' : 'للمكتب';
+  const color = document.getElementById('colorField').style.display !== 'none' ? document.getElementById('colorSelect').value : '';
+
+  if(!name || !phone || !commune){
+    alert('من فضلك عبّي كل الحقول المطلوبة');
+    return;
+  }
+
+  const total = selected.price * qty + currentDeliveryPrice();
+  const lines = [
+    'طلب جديد من موقع الميساء Collection',
+    'المنتج: ' + selected.name + (color ? ' - اللون: ' + color : ''),
+    'الكمية: ' + qty,
+    'الاسم: ' + name,
+    'الهاتف: ' + phone,
+    'الولاية: ' + wilaya,
+    'البلدية: ' + commune,
+    'نوع التوصيل: ' + deliveryType,
+    'المجموع الكلي: ' + total + ' دج'
+  ];
+  const msg = encodeURIComponent(lines.join('\n'));
+  window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + msg, '_blank');
+});
+
+async function loadSiteSettings(){
+  try{
+    const res = await fetch('/data/settings.json');
+    const s = await res.json();
+
+    if(s.logo){
+      document.getElementById('logoImg').src = s.logo;
+      document.getElementById('logoImg').style.display = 'inline-block';
+      document.getElementById('logoText').style.display = 'none';
+    }
+    if(s.branch1Image){
+      const el = document.getElementById('branch1Photo');
+      el.style.backgroundImage = 'url(' + s.branch1Image + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+    if(s.branch2Image){
+      const el = document.getElementById('branch2Photo');
+      el.style.backgroundImage = 'url(' + s.branch2Image + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+    if(s.reviewsImage){
+      document.getElementById('reviewsImage').src = s.reviewsImage;
+      document.getElementById('reviewsImageWrap').style.display = 'block';
+    }
+  }catch(e){
+    // لا شيء مرفوع بعد، تبقى العناصر الافتراضية كما هي
+  }
+}
+
+loadProducts();
+loadWilayas();
+loadCommunes();
+loadSiteSettings();
+</script>
+
+</body>
+</html>
